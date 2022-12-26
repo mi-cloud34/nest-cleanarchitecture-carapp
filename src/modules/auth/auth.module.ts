@@ -1,5 +1,5 @@
 import { forwardRef, Module } from "@nestjs/common";
-import { CommandBus } from "@nestjs/cqrs";
+import { CommandBus, CqrsModule } from "@nestjs/cqrs";
 import { JwtModule } from "@nestjs/jwt";
 import { UserCommandHandlers } from "../user/application/commands";
 import { UserModule } from "../user/user.model";
@@ -14,6 +14,7 @@ import { AuthController } from "./presentation/controller/auth.controller";
   imports: [
        // CommandBus,  
        //  forwardRef(() => UserModule),
+       CqrsModule,
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: 'secret',
@@ -22,7 +23,7 @@ import { AuthController } from "./presentation/controller/auth.controller";
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtGuard,LocalStrategy, JwtStrategy,CommandBus],
+  providers: [AuthService, JwtGuard,LocalStrategy, JwtStrategy],
   //exports: [AuthService, JwtGuard,LocalStrategy, JwtStrategy],
   
 })
