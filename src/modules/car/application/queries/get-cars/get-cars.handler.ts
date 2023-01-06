@@ -11,8 +11,8 @@ export class GetCarsQueryHandler implements IQueryHandler<GetCarsQuery> {
   ) {}
 
   // eslint-disable-next-line
-  async execute(query: GetCarsQuery) {
-    const cars = await this.carRepository.find({}).populate({path:'colorId',select:'name description userId'})
+  async execute({query}: GetCarsQuery) {
+    const cars = await this.carRepository.find(query).populate({path:'colorId',select:'name description userId'})
     return { cars }
   }
 }

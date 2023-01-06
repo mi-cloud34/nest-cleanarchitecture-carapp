@@ -13,10 +13,15 @@ import { AbstractUserRepository } from "./domain/repositories/user.repository";
 import { UserRepository } from "./infrastructure/repositories/user.repository";
 import { UserController } from "./presentation/controller/user.controller";
 import * as bcrypt from 'bcrypt';
+import { MediaService } from "../common/infrastructure/helper/s3.service";
+import { NestjsFormDataModule } from "nestjs-form-data";
+
 @Module({
   imports: [
     CqrsModule,
     AuthModule,
+    NestjsFormDataModule,
+    //NestjsFormData ,
     //forwardRef(() => AuthModule),
     MongooseModule.forFeatureAsync([
       { name: 'User',
@@ -42,7 +47,7 @@ import * as bcrypt from 'bcrypt';
 ],
   controllers: [UserController],
   providers: [
-    { provide: AbstractUserRepository, useClass: UserRepository },
+    { provide: AbstractUserRepository, useClass: UserRepository },MediaService,
     IsUserExist,
     ...UserCommandHandlers, 
     ...UserQueryHandlers

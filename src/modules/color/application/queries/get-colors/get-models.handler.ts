@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs"
 import { ColorDocument } from "src/modules/color/domain/model/color.model"
 import { AbstractColorRepository } from "src/modules/color/domain/repositories/color.repository"
-import { GetColorsQuery } from "./get-colors.query"
+import { GetColorsQuery } from "./get-models.query"
 
 @QueryHandler(GetColorsQuery)
 export class GetColorsQueryHandler implements IQueryHandler<GetColorsQuery> {

@@ -12,10 +12,10 @@ export class UpdateColorByIdCommandHandler
   ) {}
 
   async execute({ colorId, color }: UpdateColorByIdCommand) {
-    const updatedCar = await this.colorRepository.findByIdAndUpdate(
+    const updatedColor = await this.colorRepository.findByIdAndUpdate(
       colorId,
       color
     )
-    return { movie: updatedCar }
+    return { color: updatedColor }
   }
 }

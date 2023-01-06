@@ -1,1 +1,1 @@
-export class GetCarsQuery {}
+export class GetCarsQuery {constructor(public readonly query: string) {}} 

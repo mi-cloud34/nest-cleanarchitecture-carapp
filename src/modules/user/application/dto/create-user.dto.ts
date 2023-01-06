@@ -1,6 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, isBoolean, IsDateString, IsNotEmpty, IsString, IS_EMAIL, MaxLength, MinLength } from "class-validator";
+import { Transform } from "class-transformer";
+import { IsBoolean,IsNotEmpty, IsString, IS_EMAIL, MaxLength, MinLength } from "class-validator";
+import { IsFile } from "nestjs-form-data";
 export class CreateUserDto {
+   
     @ApiProperty()
     @IsString()
     @MinLength(4)
@@ -15,16 +18,17 @@ export class CreateUserDto {
     @ApiProperty({default:"user"})
     @IsString()
     readonly role: string; 
-    @ApiProperty({default:Date.now,required: false})
-   
+    @ApiProperty({required: false})
     readonly createdAt: Date;
     @ApiProperty({required:false})
     @IsString()
     readonly place: string;
     @ApiProperty({required:false})
-    @IsString()
-    readonly image: string;
+    @IsFile()
+     image: string;
     @ApiProperty({required:false})
+   // @IsBooleanString()
+   @Transform(({ value }) => JSON.parse(value))
     @IsBoolean()
     readonly blocked: boolean;
    

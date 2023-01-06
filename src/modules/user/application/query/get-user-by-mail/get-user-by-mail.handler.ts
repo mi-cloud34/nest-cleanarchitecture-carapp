@@ -1,4 +1,5 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs"
+
 import { UserDocument } from "src/modules/user/domain/model/user.model"
 import { AbstractUserRepository } from "src/modules/user/domain/repositories/user.repository"
 import { GetUserByEmailQuery } from "./get-user-by-mail.query"
@@ -11,8 +12,10 @@ export class GetUserByEmailQueryHandler
     private readonly userRepository: AbstractUserRepository<UserDocument>
   ) {}
 
-  async execute({ email}: GetUserByEmailQuery) {
-    const user = await this.userRepository.find(email)
+  async execute(command: GetUserByEmailQuery) {
+   const {email,password}=command;
+    const user = await this.userRepository.findOne({email})
+    console.log("user2222",user);
     
     return { user }
   }

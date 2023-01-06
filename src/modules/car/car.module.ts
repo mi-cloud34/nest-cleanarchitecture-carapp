@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
 import { MongooseModule } from "@nestjs/mongoose";
+import { MediaService } from "../common/infrastructure/helper/s3.service";
 import { CarCommandHandlers } from "./application/commands";
 import { IsCarExist } from "./application/dto/custom-validators/is-car-exist.validator";
 import { CarQueryHandlers } from "./application/queries";
@@ -16,7 +17,7 @@ import { CarController } from "./presentation/controllers/car.controller";
   ],
   controllers: [CarController],
   providers: [
-    { provide: AbstractCarRepository, useClass: CarRepository },
+    { provide: AbstractCarRepository, useClass: CarRepository },MediaService,
     IsCarExist,
     ...CarCommandHandlers,
     ...CarQueryHandlers

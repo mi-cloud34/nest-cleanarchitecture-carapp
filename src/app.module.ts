@@ -5,15 +5,22 @@ import { AuthModule } from "./modules/auth/auth.module";
 import { CarModule } from "./modules/car/car.module";
 import { ColorModule } from "./modules/color/color.module";
 import { config } from "./modules/common/infrastructure/configurations/index.config";
+import { KmModule } from "./modules/km/km.module";
+import { ModelModule } from "./modules/model/model.module";
 import { UserModule } from "./modules/user/user.model";
+import { YearModule } from "./modules/year/year.module";
 
 @Module({
   imports: [
     ColorModule,
     CarModule,
     UserModule,
+    KmModule,
+    ModelModule,
+    YearModule,
     AuthModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

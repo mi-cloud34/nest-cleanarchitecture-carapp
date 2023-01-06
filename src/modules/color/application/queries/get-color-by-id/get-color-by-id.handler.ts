@@ -8,11 +8,11 @@ export class GetColorByIdQueryHandler
   implements IQueryHandler<GetColorByIdQuery>
 {
   constructor(
-    private readonly ColorRepository: AbstractColorRepository<ColorDocument>
+    private readonly colorRepository: AbstractColorRepository<ColorDocument>
   ) {}
 
   async execute({ colorId }: GetColorByIdQuery) {
-    const color = await this.ColorRepository.findById(colorId)
+    const color = await this.colorRepository.findById(colorId)
     return { color }
   }
 }

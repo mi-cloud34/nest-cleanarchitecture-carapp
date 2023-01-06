@@ -1,6 +1,5 @@
-import { GetColorByIdQueryHandler } from "./get-Color-by-id/get-Color-by-id.handler";
-import { GetColorsQueryHandler } from "./get-Colors/get-Colors.handler";
-
+import { GetColorByIdQueryHandler } from "./get-color-by-id/get-color-by-id.handler";
+import { GetColorsQueryHandler } from "./get-colors/get-models.handler";
 
 export const ColorQueryHandlers = [
   GetColorsQueryHandler,

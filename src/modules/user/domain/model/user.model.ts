@@ -23,9 +23,9 @@ export class User {
   createdAt: Date;
   @Prop({require:false})
   place: string;
-  @Prop({require:false})
+  @Prop()
   image: string;
-  @Prop({require:false})
+  @Prop()
   blocked: boolean;
 }
 export const UserSchema = SchemaFactory.createForClass(User);

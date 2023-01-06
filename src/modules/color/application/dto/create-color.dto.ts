@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { User } from "src/modules/user/domain/model/user.model";
 
 export class CreateColorDto {
     @ApiProperty()
@@ -12,5 +13,5 @@ export class CreateColorDto {
     readonly description:string
     @ApiProperty()
     @IsString()
-    readonly userId:string
+     userId:User
 }
