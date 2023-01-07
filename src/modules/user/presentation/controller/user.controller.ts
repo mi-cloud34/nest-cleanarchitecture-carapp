@@ -29,10 +29,10 @@ export class UserController {
   @Post()
   @Message('User created successfully.')
   @FormDataRequest()
-  @UseInterceptors(FileInterceptor ('file'))
+  //@UseInterceptors(FileInterceptor ('image'))
   async createUser(@Req() req ,/* @UploadedFile() file: Express.Multer.File,*/
   @Body() createUserDTO: CreateUserDto) {
-    const file=req.file.image;
+    const file=req.files.image;
     console.log("fileeee",file);
     const key="users/photo/"+`${v4()}${file.filename}`;
     const keys=`${v4()}${file.filename}`;

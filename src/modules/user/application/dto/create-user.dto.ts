@@ -24,7 +24,7 @@ export class CreateUserDto {
     @IsString()
     readonly place: string;
     @ApiProperty({required:false})
-    @IsFile()
+    //@IsFile()
      image: string;
     @ApiProperty({required:false})
    // @IsBooleanString()

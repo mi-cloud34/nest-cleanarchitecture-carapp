@@ -23,7 +23,7 @@ export class User {
   createdAt: Date;
   @Prop({require:false})
   place: string;
-  @Prop()
+  @Prop({required:false})
   image: string;
   @Prop()
   blocked: boolean;

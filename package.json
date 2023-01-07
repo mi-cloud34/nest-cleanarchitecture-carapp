@@ -37,6 +37,7 @@
     "class-validator": "^0.14.0",
     "compression": "^1.7.4",
     "helmet": "^6.0.1",
+    "mongodb-memory-server": "^8.11.0",
     "mongoose": "^6.8.1",
     "morgan": "^1.10.0",
     "nestjs-form-data": "^1.8.7",
