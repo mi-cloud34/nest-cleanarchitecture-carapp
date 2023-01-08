@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from "@nestjs/common"
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common"
 import { CommandBus, QueryBus } from "@nestjs/cqrs"
 import { ApiTags } from "@nestjs/swagger"
 import { JwtGuard } from "src/modules/auth/guard/jwt-quard"
@@ -13,6 +13,7 @@ import { GetCarByIdQuery } from "../../application/queries/get-car-by-id/get-car
 import { GetCarsQuery } from "../../application/queries/get-cars/get-cars.query"
 import {v4} from  'uuid'
 import { MediaService } from "src/modules/common/infrastructure/helper/s3.service"
+import { FileInterceptor } from "@nestjs/platform-express"
 
 @ApiTags('car')
 @Controller('car')
@@ -26,12 +27,13 @@ export class CarController {
   @Post()
   @UseGuards(JwtGuard)
   @Message('Car created successfully.')
-  async createCar(@Req() req,@Body() createCarDTO: CreateCarDto) {
+  @UseInterceptors(FileInterceptor ('image'))
+  async createCar(@Req() req, @UploadedFile() file: Express.Multer.File,@Body() createCarDTO: CreateCarDto) {
     createCarDTO.userId=req.user.user._id;
     console.log("userIddddd",req.user.user._id);
-    const file=req.files.carimage;
-    const key="cars/photo/"+`${v4()}${file.name}`;
-    const keys=`${v4()}${file.name}`;
+    //const file=req.files.carimage;
+    const key="cars/photo/"+`${v4()}${file.originalname}`;
+    const keys=`${v4()}${file.originalname}`;
     this.mediaService.uploadS3(file,key)
     createCarDTO.carimage=keys;
     return this.commandBus.execute(new CreateCarCommand(createCarDTO))
