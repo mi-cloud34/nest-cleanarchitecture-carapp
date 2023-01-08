@@ -40,7 +40,7 @@ describe('Movie Controller - [PUT] /movies/:movieId', () => {
 
     const createdCar = createdCarResponse.body.payload.car
 
-    createdCar.director = 'Christopher Edward Nolan'
+    createdCar.carname = 'Ferrari'
 
     const updatedCarResponse = await request
       .put(`/car/${createdCar._id}`)

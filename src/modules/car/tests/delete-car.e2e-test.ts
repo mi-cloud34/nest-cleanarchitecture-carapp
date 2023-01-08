@@ -18,7 +18,7 @@ describe('Car Controller - [DELETE] /car/:carId', () => {
     request = supertest(app.getHttpServer())
   })
 
-  it('should delete the movie by id', async () => {
+  it('should delete the car by id', async () => {
     const car = {
       carname: 'BMW',
       colorId: '63b35ace98c8ed2a26b10281',

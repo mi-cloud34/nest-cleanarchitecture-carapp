@@ -18,7 +18,7 @@ describe('Car Controller - [GET] /car/:carId', () => {
     request = supertest(app.getHttpServer())
   })
 
-  it('should get the movie by id', async () => {
+  it('should get the car by id', async () => {
     const car = {
       carname: 'BMW',
       colorId: '63b35ace98c8ed2a26b10281',
@@ -34,7 +34,7 @@ describe('Car Controller - [GET] /car/:carId', () => {
 
 
     const createdMovieResponse = await request
-      .post('/movies')
+      .post('/car')
       .send(car)
       .expect(HttpStatus.CREATED)
 
