@@ -19,7 +19,7 @@ describe('Car Controller - [GET] /car', () => {
     request = supertest(app.getHttpServer())
   })
 
-  it('should get all movies', async () => {
+  it('should get all cars', async () => {
     const car = {
       carname: 'BMW',
       colorId: '63b35ace98c8ed2a26b10281',
@@ -43,7 +43,7 @@ describe('Car Controller - [GET] /car', () => {
 
     const fetchedCars = await request.get('/car').expect(HttpStatus.OK)
 
-    const cars = fetchedCars.body.payload.movies
+    const cars = fetchedCars.body.payload.cars
 
    
     expect(cars).toEqual({
